@@ -1,0 +1,64 @@
+[
+  {
+    "ContainingType": "GoldBazaarAPI.Controllers.DailyPercentageController",
+    "Method": "GetLatestDailyPercentage",
+    "RelativePath": "api/daily-percentages/latest",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "GoldBazaarAPI.Controllers.DailyPercentageController",
+    "Method": "GetLatestDailyPercentageProduct",
+    "RelativePath": "api/daily-percentages/latest/{product}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "product",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "GoldBazaarAPI.Controllers.GoldPricesController",
+    "Method": "GetLatestGoldPrice",
+    "RelativePath": "api/gold-prices/latest",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "GoldBazaarAPI.Controllers.GoldPricesController",
+    "Method": "GetLatestGoldPriceProduct",
+    "RelativePath": "api/gold-prices/latest/{product}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "product",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "GoldBazaarAPI.Models.GoldPriceDetail",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  }
+]

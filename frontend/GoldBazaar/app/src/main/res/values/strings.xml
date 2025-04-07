@@ -1,0 +1,39 @@
+<resources>
+    <string name="app_name">GoldMarketCap</string>
+    <string name="signup">Kaydol</string>
+    <string name="login">Giriş Yap</string>
+    <string name="logout">Çıkış Yap</string>
+    <string name="pwd">Şifre</string>
+    <string name="forgot_pwd">Şifremi Unuttum</string>
+    <string name="new_pwd">Yeni Şifre</string>
+    <string name="reset_pwd">Yeni Şifre İste</string>
+    <string name="confirm_pwd">Şifreyi Doğrula</string>
+    <string name="token">Token</string>
+    <string name="signup_email">Uygulamaya kaydolmak için e-posta adresinizi girin</string>
+    <string name="email_hint">email@alanadı.com</string>
+    <string name="todo">TODO</string>
+    <string name="header">GoldBazaar</string>
+    <string name="markets">Piyasalar</string>
+    <string name="wallet">Cüzdan</string>
+    <string name="news">Haberler</string>
+    <string name="signup_prompt">Üyeliğiniz yok mu? Kayıt olun</string>
+    <string name="login_prompt">Üyeliğiniz var mı? Giriş yapın</string>
+    <string name="buy">Al</string>
+    <string name="sell">Sat</string>
+    <string name="amount">Miktar</string>
+    <string name="date">Tarih</string>
+    <string name="avg_buy_price">Ort. Alış Fiyatı</string>
+    <string name="buying_price">Alış Fiyatı</string>
+    <string name="selling_price">Satış Fiyatı</string>
+    <string name="profit">Kar/Zarar</string>
+    <string name="price">Fiyat</string>
+    <string name="add_txn">Ekle</string>
+    <string name="delete_txn">İşlemi Sil</string>
+    <string name="update_transaction">İşlemi Güncelle</string>
+    <string name="delete_gold_asset">Varlığı Sil</string>
+    <string name="total_value_label">Toplam Değer :</string>
+    <string name="total_value">0</string>
+    <string name="search">Ara</string>
+</resources>
+
+
