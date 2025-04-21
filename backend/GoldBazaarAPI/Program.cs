@@ -1,3 +1,4 @@
+using GoldBazaarAPI.Services;
 using Microsoft.OpenApi.Models;
 using System.Text;
 
@@ -5,6 +6,10 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllers();
+builder.Services.AddScoped<ReportService>();
+builder.Services.AddScoped<ReportService>();
+builder.Services.AddScoped<EmailService>();
+builder.Services.AddScoped<AuthService>();
 
 // Add MongoDB services.
 var mongoDBSettings = builder.Configuration.GetSection("MongoDB");

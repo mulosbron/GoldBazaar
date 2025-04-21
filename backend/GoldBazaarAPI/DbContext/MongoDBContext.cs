@@ -26,4 +26,12 @@ public class MongoDBContext
             return _database.GetCollection<DailyPercentage>("daily_percentage");
         }
     }
+
+    public IMongoCollection<User> Users
+    {
+        get
+        {
+            return _database.GetCollection<User>("users");
+        }
+    }
 }
