@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using MongoDB.Driver;
 using GoldBazaarAPI.Models;
+using GoldBazaarAPI.Data;
 
 namespace GoldBazaarAPI.Controllers
 {

@@ -1,9 +1,0 @@
-<resources>
-    <!-- Base application theme. -->
-    <style name="Base.Theme.GoldBazaar" parent="Theme.MaterialComponents.DayNight.NoActionBar">
-        <!-- Customize your light theme here. -->
-        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
-    </style>
-
-    <style name="Theme.GoldBazaar" parent="Base.Theme.GoldBazaar" />
-</resources>

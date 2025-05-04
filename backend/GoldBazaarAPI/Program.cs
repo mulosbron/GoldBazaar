@@ -1,12 +1,11 @@
 using GoldBazaarAPI.Services;
+using GoldBazaarAPI.Data;
 using Microsoft.OpenApi.Models;
 using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
-
 // Add services to the container.
 builder.Services.AddControllers();
-builder.Services.AddScoped<ReportService>();
 builder.Services.AddScoped<ReportService>();
 builder.Services.AddScoped<EmailService>();
 builder.Services.AddScoped<AuthService>();
@@ -15,11 +14,26 @@ builder.Services.AddScoped<AuthService>();
 var mongoDBSettings = builder.Configuration.GetSection("MongoDB");
 var connectionString = mongoDBSettings["ConnectionString"];
 var databaseName = mongoDBSettings["DatabaseName"];
+var newsDatabaseName = mongoDBSettings["NewsDatabaseName"]; // Haber veritabaný adý
+
 if (string.IsNullOrEmpty(connectionString) || string.IsNullOrEmpty(databaseName))
 {
     throw new InvalidOperationException("MongoDB settings are not set in the configuration.");
 }
-builder.Services.AddSingleton<MongoDBContext>(sp => new MongoDBContext(connectionString, databaseName));
+
+// MongoDBContext singleton olarak ekle
+if (!string.IsNullOrEmpty(newsDatabaseName))
+{
+    // Haber desteði ile MongoDB context
+    builder.Services.AddSingleton<MongoDBContext>(sp =>
+        new MongoDBContext(connectionString, databaseName, newsDatabaseName));
+}
+else
+{
+    // Standart MongoDB context
+    builder.Services.AddSingleton<MongoDBContext>(sp =>
+        new MongoDBContext(connectionString, databaseName));
+}
 
 // Add Swagger
 builder.Services.AddEndpointsApiExplorer();
@@ -35,7 +49,6 @@ builder.Services.AddSwaggerGen(options =>
         In = ParameterLocation.Header,
         Description = "JWT Authorization header using the Bearer scheme."
     });
-
     // Make sure the Swagger UI requires a Bearer token to be specified
     options.AddSecurityRequirement(new OpenApiSecurityRequirement
     {
@@ -53,7 +66,6 @@ builder.Services.AddSwaggerGen(options =>
     });
 });
 
-
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowAll", builder =>
@@ -61,7 +73,6 @@ builder.Services.AddCors(options =>
                .AllowAnyMethod()
                .AllowAnyHeader());
 });
-
 
 var app = builder.Build();
 
@@ -73,7 +84,6 @@ app.UseSwaggerUI();
 //}
 
 app.UseCors("AllowAll");
-
 app.UseHttpsRedirection();
 app.UseAuthentication();
 app.UseAuthorization();

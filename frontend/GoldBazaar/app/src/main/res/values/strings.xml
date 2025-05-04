@@ -1,8 +1,10 @@
-<resources>
-    <string name="app_name">GoldMarketCap</string>
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="app_name">GoldBazaar</string>
+
+    <!-- Kullanıcı İşlemleri -->
     <string name="signup">Kaydol</string>
     <string name="login">Giriş Yap</string>
-    <string name="logout">Çıkış Yap</string>
     <string name="pwd">Şifre</string>
     <string name="forgot_pwd">Şifremi Unuttum</string>
     <string name="new_pwd">Yeni Şifre</string>
@@ -11,31 +13,68 @@
     <string name="token">Token</string>
     <string name="signup_email">Uygulamaya kaydolmak için e-posta adresinizi girin</string>
     <string name="email_hint">email@alanadı.com</string>
+    <string name="remember_me">Beni Hatırla</string>
+    
+    <!-- Navigation ve Header -->
     <string name="todo">TODO</string>
-    <string name="header">GoldBazaar</string>
     <string name="markets">Piyasalar</string>
     <string name="wallet">Cüzdan</string>
     <string name="news">Haberler</string>
-    <string name="signup_prompt">Üyeliğiniz yok mu? Kayıt olun</string>
-    <string name="login_prompt">Üyeliğiniz var mı? Giriş yapın</string>
-    <string name="buy">Al</string>
-    <string name="sell">Sat</string>
-    <string name="amount">Miktar</string>
-    <string name="date">Tarih</string>
-    <string name="avg_buy_price">Ort. Alış Fiyatı</string>
+
+    <!-- İşlem ve Cüzdan -->
     <string name="buying_price">Alış Fiyatı</string>
     <string name="selling_price">Satış Fiyatı</string>
-    <string name="profit">Kar/Zarar</string>
-    <string name="price">Fiyat</string>
-    <string name="add_txn">Ekle</string>
-    <string name="delete_txn">İşlemi Sil</string>
-    <string name="update_transaction">İşlemi Güncelle</string>
-    <string name="delete_gold_asset">Varlığı Sil</string>
-    <string name="total_value_label">Toplam Değer :</string>
-    <string name="total_value">0</string>
     <string name="search">Ara</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <!-- UI Öğeleri -->
+    <string name="welcome_back">Tekrar Hoşgeldin, %1$s</string>
+    <string name="logged_out_successfully">Başarıyla çıkış yapıldı</string>
+    <string name="please_login_to_continue">Devam etmek için lütfen giriş yapın</string>
+    <string name="settings">Ayarlar</string>
+    <string name="loading">Yükleniyor…</string>
+
+    <!-- Genel metin kaynakları -->
+    <string name="no_data">Veri yok</string>
+    <string name="not_specified">Belirtilmemiş</string>
+    <string name="unknown">Bilinmiyor</string>
+    <string name="not_calculable">Hesaplanamıyor</string>
+
+    <!-- Hata mesajları -->
+    <string name="invalid_email_or_password">Geçersiz e-posta veya şifre</string>
+    <string name="invalid_email">Geçersiz e-posta adresi</string>
+    <string name="email_send_failed">E-posta gönderilemedi: %1$s</string>
+    <string name="password_length_error">Şifre en az 6 karakter olmalıdır</string>
+    <string name="password_security_requirements">Şifre en az bir büyük harf, bir küçük harf, bir rakam ve bir özel karakter içermelidir.</string>
+
+    <!-- Zaman formatları -->
+    <string name="time_format_hours" tools:ignore="PluralsCandidate">%1$d saat</string>
+    <string name="time_format_hours_minutes" tools:ignore="PluralsCandidate">%1$d saat %2$d dakika</string>
+    <string name="time_format_minutes" tools:ignore="PluralsCandidate">%1$d dakika</string>
+    <string name="time_format_seconds" tools:ignore="PluralsCandidate">%1$d saniye</string>
+
+    <!-- Kullanıcı arabirimi metinleri -->
+    <string name="fill_all_fields">Tüm alanları doldurun</string>
+    <string name="passwords_not_match">Şifreler eşleşmiyor</string>
+    <string name="empty_market">Piyasa verileri bulunamadı</string>
+    <string name="empty_news">Haber bulunamadı</string>
+    <string name="try_again">Tekrar Dene</string>
+
+    <!-- Haber modülü için özel string kaynakları -->
+    <string name="read_more">Devamını Oku</string>
+
+    <string name="gold_price_card">Altın fiyat kartı</string>
+    <string name="news_item">Haber öğesi</string>
+    <string name="news_thumbnail">Haber görseli</string>
+    <string name="create_acc">Hesabınız yok mu? Buradan bir tane oluşturun.</string>
+    <string name="no_value">Şu anda piyasa verileri yüklenemedi. Lütfen daha sonra tekrar deneyin.</string>
+    <string name="no_news">Şu anda altın ile ilgili haber bulunamadı. Lütfen daha sonra tekrar deneyin veya arama kriterlerini değiştirin.</string>
+    <string name="back">Geri</string>
+    <string name="agree_tos">Kullanım koşullarını kabul ediyorum</string>
+    <string name="already_have_an_acc">Zaten hesabınız var mı?</string>
+    <string name="enter_token">E-posta adresinize gönderilen token\'ı ve yeni şifrenizi girin.</string>
+    <string name="enter_email">Şifrenizi sıfırlamak için e-posta adresinizi girin. Sıfırlama bağlantısı e-posta adresinize gönderilecektir.</string>
+    <string name="remember_your_passwd">Şifrenizi hatırladınız mı?</string>
+    <string name="last_update">Son Güncelleme: %s</string>
+    <string name="legal_disclaimer_short">Aşağıdaki haberler sadece bilgilendirme amaçlıdır.\nDetaylar için haberin kaynağına bakın.</string>
+
 </resources>
-
-

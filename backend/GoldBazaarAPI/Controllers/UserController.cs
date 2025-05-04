@@ -4,6 +4,7 @@ using GoldBazaarAPI.Models;
 using GoldBazaarAPI.Services;
 using Org.BouncyCastle.Crypto.Generators;
 using BCrypt.Net;
+using GoldBazaarAPI.Data;
 
 namespace GoldBazaarAPI.Controllers
 {

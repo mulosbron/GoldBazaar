@@ -26,6 +26,42 @@
     "ReturnTypes": []
   },
   {
+    "ContainingType": "GoldBazaarAPI.Controllers.GoldNewsController",
+    "Method": "GetGoldNews",
+    "RelativePath": "api/gold-news",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "sortBy",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "pageSize",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "page",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "GoldBazaarAPI.Models.NewsResponse",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
     "ContainingType": "GoldBazaarAPI.Controllers.GoldPricesController",
     "Method": "GetLatestGoldPrice",
     "RelativePath": "api/gold-prices/latest",

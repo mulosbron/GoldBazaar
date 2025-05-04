@@ -1,7 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- Base color palette -->
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="selected_color">#FFD700</color>
-    <color name="default_color">#FFC107</color>
+
+    <!-- Modern Gold Palette - 2023 Style -->
+    <color name="primary">#FFB300</color>
+    <color name="primary_light">#FFE082</color>
+    <color name="primary_dark">#FF8F00</color>
+
+    <!-- Accent Colors -->
+    <color name="accent">#FF6D00</color>
+    <color name="accent_variant">#FF9E40</color>
+
+    <!-- UI Colors -->
+    <color name="background">#F9F9F9</color>
+    <color name="card_background">#FFFFFF</color>
+    <color name="surface">#FFFFFF</color>
+    <color name="error">#B71C1C</color>
+
+    <!-- Text Colors -->
+    <color name="text_primary">#212121</color>
+    <color name="text_secondary">#757575</color>
+
+    <!-- Status Colors -->
+    <color name="success">#00C853</color>
+
+    <!-- Price Movement Colors -->
+    <color name="price_neutral">#9E9E9E</color>
+
+    <!-- High contrast colors for accessibility -->
+    <color name="text_secondary_high_contrast">#616161</color> <!-- Darker grey for better contrast -->
 </resources>

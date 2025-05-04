@@ -2,6 +2,7 @@
 using MongoDB.Driver;
 using GoldBazaarAPI.Models;
 using GoldBazaarAPI.Services;
+using GoldBazaarAPI.Data;
 
 namespace GoldBazaarAPI.Controllers
 {
