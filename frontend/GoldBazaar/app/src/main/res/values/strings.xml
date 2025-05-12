@@ -76,5 +76,13 @@
     <string name="remember_your_passwd">Şifrenizi hatırladınız mı?</string>
     <string name="last_update">Son Güncelleme: %s</string>
     <string name="legal_disclaimer_short">Aşağıdaki haberler sadece bilgilendirme amaçlıdır.\nDetaylar için haberin kaynağına bakın.</string>
-
+    <string name="buy">Alış</string>
+    <string name="sell">Satış</string>
+    <string name="amount">Miktar</string>
+    <string name="price">Fiyat</string>
+    <string name="delete">Sil</string>
+    <string name="total_value">Toplam Değer</string>
+    <string name="empty_wallet_message">Cüzdanınızda hiç altın bulunmamaktadır</string>
+    <string name="add_asset">Yeni Varlık Ekle</string>
+    <string name="empty_transactions_message">Bu altın türü için işlem bulunmamaktadır</string>
 </resources>

@@ -47,14 +47,20 @@ class MainActivity : AppCompatActivity() {
                 }
 
                 R.id.navigation_wallet -> {
-                    if (sharedPrefsManager.isUserLoggedIn()) {
-                        navController.navigate(R.id.navigation_wallet)
-                    } else {
-                        navController.navigate(R.id.navigation_login)
-                        showSnackbar(getString(R.string.please_login_to_continue))
-                    }
+                    // Always navigate to wallet, no login check
+                    navController.navigate(R.id.navigation_wallet)
                     true
                 }
+
+//                R.id.navigation_wallet -> {
+//                    if (sharedPrefsManager.isUserLoggedIn()) {
+//                        navController.navigate(R.id.navigation_wallet)
+//                    } else {
+//                        navController.navigate(R.id.navigation_login)
+//                        showSnackbar(getString(R.string.please_login_to_continue))
+//                    }
+//                    true
+//                }
 
                 R.id.navigation_news -> {
                     navController.navigate(R.id.navigation_news)
