@@ -4,7 +4,7 @@
 A comprehensive gold market tracking application that provides real-time gold prices, market analysis, and portfolio management features. The system combines automated data collection from multiple sources, robust backend APIs, and an intuitive mobile interface to deliver accurate gold market insights to users.
 
 ## Links
-- [goldbazaar](https://staging-api.goldmarketcap.xyz/swagger/index.html)
+- [GoldBazaar API Doc](https://staging-api.goldmarketcap.xyz/swagger/index.html)
 
 ## Purpose
 To create a reliable platform for gold market enthusiasts, investors, and traders who need real-time gold price tracking, historical data analysis, and portfolio management tools. GoldBazaar aims to democratize access to gold market information through automated data collection and user-friendly interfaces.
@@ -132,7 +132,6 @@ frontend/
 
 ### API Endpoints
 ```http
-### GoldDailyPercentage
 GET /api/gold-daily-percentages/latest
 GET /api/gold-daily-percentages/latest/{product}
 GET /api/gold-prices/latest
@@ -155,10 +154,30 @@ GET /api/reports/download/{fileType}
 ## Screenshots
 
 ### Mobile Application Screens
-<img src="docs/images/market.png" width="200" alt="Market Screen - Real-time gold prices">
-<img src="docs/images/news.png" width="200" alt="News Screen - Latest gold market news">
-<img src="docs/images/wallet.png" width="200" alt="Wallet Screen - Portfolio management">
-<img src="docs/images/settings.png" width="200" alt="Settings Screen - App configuration">
+
+<table>
+  <tr>
+    <td align="center">
+      <img src="docs/images/market.png" width="300" alt="Market Screen - Real-time gold prices">
+      <br><sub><b>Market</b></sub>
+    </td>
+    <td align="center">
+      <img src="docs/images/news.png" width="300" alt="News Screen - Latest gold market news">
+      <br><sub><b>News</b></sub>
+    </td>
+  </tr>
+  <tr>
+    <td align="center">
+      <img src="docs/images/wallet.png" width="300" alt="Wallet Screen - Portfolio management">
+      <br><sub><b>Wallet</b></sub>
+    </td>
+    <td align="center">
+      <img src="docs/images/settings.png" width="300" alt="Settings Screen - App configuration">
+      <br><sub><b>Settings</b></sub>
+    </td>
+  </tr>
+</table>
+
 
 ### Available Builds
 - **Development APK**: `frontend/apk/dev/` - Debug build with development features
