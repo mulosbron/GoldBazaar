@@ -1,8 +1,8 @@
 package com.mulosbron.goldbazaar.view.activity
 
+import android.content.Context
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContextCompat
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
@@ -11,6 +11,7 @@ import com.google.android.material.snackbar.Snackbar
 import com.mulosbron.goldbazaar.R
 import com.mulosbron.goldbazaar.databinding.ActivityMainBinding
 import com.mulosbron.goldbazaar.util.SharedPrefsManager
+import com.mulosbron.goldbazaar.util.ThemeManager
 
 class MainActivity : AppCompatActivity() {
 
@@ -19,6 +20,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var navController: NavController
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        setTheme(ThemeManager.getCurrentThemeRes(this)) // 🔥 Tüm tema olayı burada!
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
@@ -30,28 +32,27 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setupNavigation() {
-        // NavHostFragment'ı doğru şekilde al
-        val navHostFragment = supportFragmentManager
+        // NavHostFragment'ı al ve navController'a ata
+        val host = supportFragmentManager
             .findFragmentById(R.id.nav_host_fragment) as NavHostFragment
-        navController = navHostFragment.navController
+        navController = host.navController
 
-        // Bottom Navigation'ı NavController ile bağla
+        // BottomNavigationView ile navController'ı bağla
         binding.bottomNavigationView.setupWithNavController(navController)
 
-        // Giriş kontrolü için özel davranış ekle
+        // Bottom nav seçimine göre fragment geçişleri
         binding.bottomNavigationView.setOnItemSelectedListener { item ->
             when (item.itemId) {
                 R.id.navigation_markets -> {
                     navController.navigate(R.id.navigation_markets)
                     true
                 }
-
                 R.id.navigation_wallet -> {
                     // Always navigate to wallet, no login check
                     navController.navigate(R.id.navigation_wallet)
                     true
                 }
-
+//                // Eğer login kontrolü istiyorsan bu bloğu kullan:
 //                R.id.navigation_wallet -> {
 //                    if (sharedPrefsManager.isUserLoggedIn()) {
 //                        navController.navigate(R.id.navigation_wallet)
@@ -61,24 +62,19 @@ class MainActivity : AppCompatActivity() {
 //                    }
 //                    true
 //                }
-
                 R.id.navigation_news -> {
                     navController.navigate(R.id.navigation_news)
                     true
                 }
-
                 else -> false
             }
         }
     }
 
     private fun setupUI() {
+        // Top bar'daki ayar butonunu dinle
         binding.settingsButton.setOnClickListener {
-            if (sharedPrefsManager.isUserLoggedIn()) {
-                showLogoutDialog()
-            } else {
-                showSnackbar("Ayarlar için giriş yapmalısınız")
-            }
+            navController.navigate(R.id.navigation_settings)
         }
     }
 
@@ -91,7 +87,7 @@ class MainActivity : AppCompatActivity() {
             .show()
     }
 
-    // Yeni navigation fonksiyonları
+    // Yeni navigation fonksiyonları, Login/Register sonrası çağırılır
     fun navigateToWalletAfterLogin() {
         // BottomNavigationView'ı güncelle
         binding.bottomNavigationView.selectedItemId = R.id.navigation_wallet
@@ -118,9 +114,16 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun showSnackbar(message: String) {
+        // Tema renkleriyle Snackbar gösterimi
+        val typedValue = android.util.TypedValue()
+        theme.resolveAttribute(com.google.android.material.R.attr.colorPrimary, typedValue, true)
+        val colorPrimary = typedValue.data
+        theme.resolveAttribute(com.google.android.material.R.attr.colorOnPrimary, typedValue, true)
+        val colorOnPrimary = typedValue.data
+
         Snackbar.make(binding.root, message, Snackbar.LENGTH_SHORT)
-            .setBackgroundTint(ContextCompat.getColor(this, R.color.primary))
-            .setTextColor(ContextCompat.getColor(this, R.color.white))
+            .setBackgroundTint(colorPrimary)
+            .setTextColor(colorOnPrimary)
             .show()
     }
 }

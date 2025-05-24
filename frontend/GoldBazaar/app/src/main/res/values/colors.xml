@@ -1,34 +1,30 @@
-<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- Base color palette -->
-    <color name="black">#FF000000</color>
-    <color name="white">#FFFFFFFF</color>
+    <!-- Palette1: Turkuaz -->
+    <color name="palette1_primary">#006D77</color>
+    <color name="palette1_secondary">#83C5BE</color>
+    <color name="palette1_on">#000000</color>
 
-    <!-- Modern Gold Palette - 2023 Style -->
-    <color name="primary">#FFB300</color>
-    <color name="primary_light">#FFE082</color>
-    <color name="primary_dark">#FF8F00</color>
+    <!-- Palette4: Gece Mavisi -->
+    <color name="palette4_primary">#0B132B</color>
+    <color name="palette4_secondary">#3A506B</color>
+    <color name="palette4_on">#FFFFFF</color>
 
-    <!-- Accent Colors -->
-    <color name="accent">#FF6D00</color>
-    <color name="accent_variant">#FF9E40</color>
+    <!-- Palette5: Mor Tonları -->
+    <color name="palette5_primary">#9381FF</color>
+    <color name="palette5_secondary">#B8B8FF</color>
+    <color name="palette5_on">#000000</color>
 
-    <!-- UI Colors -->
-    <color name="background">#F9F9F9</color>
-    <color name="card_background">#FFFFFF</color>
-    <color name="surface">#FFFFFF</color>
+    <!-- Ortak Temel Renkler -->
+    <color name="white">#FFFFFF</color>
+    <color name="black">#000000</color>
+
+    <!-- Eski layout/drawable referanslarını karşılayan renkler -->
+    <color name="primary">#006D77</color>
+    <color name="primary_light">#83C5BE</color>
+    <color name="success">#00C853</color>
     <color name="error">#B71C1C</color>
-
-    <!-- Text Colors -->
+    <color name="price_neutral">#9E9E9E</color>
     <color name="text_primary">#212121</color>
     <color name="text_secondary">#757575</color>
-
-    <!-- Status Colors -->
-    <color name="success">#00C853</color>
-
-    <!-- Price Movement Colors -->
-    <color name="price_neutral">#9E9E9E</color>
-
-    <!-- High contrast colors for accessibility -->
-    <color name="text_secondary_high_contrast">#616161</color> <!-- Darker grey for better contrast -->
+    <color name="card_background">#FFFFFF</color>
 </resources>

@@ -1,93 +1,57 @@
-<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- Base application theme -->
+
+    <!-- Base uygulama teması (Palette1 varsayılan) -->
     <style name="Theme.GoldBazaar" parent="Theme.MaterialComponents.DayNight.NoActionBar">
-        <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/primary</item>
-        <item name="colorPrimaryVariant">@color/primary_dark</item>
-        <item name="colorOnPrimary">@color/white</item>
-
-        <!-- Secondary brand color. -->
-        <item name="colorSecondary">@color/accent</item>
-        <item name="colorSecondaryVariant">@color/accent_variant</item>
-        <item name="colorOnSecondary">@color/white</item>
-
-        <!-- Status bar and navigation bar colors -->
-        <item name="android:statusBarColor">@color/background</item>
-        <item name="android:windowLightStatusBar">true</item>
-        <item name="android:navigationBarColor">@color/background</item>
-        <!--item name="android:windowLightNavigationBar">true</item-->
-
-        <!-- Background colors -->
-        <item name="android:colorBackground">@color/background</item>
-        <item name="colorSurface">@color/surface</item>
-        <item name="colorOnSurface">@color/text_primary</item>
-        <item name="colorOnBackground">@color/text_primary</item>
-
-        <!-- Text appearance -->
-        <item name="textAppearanceHeadline6">@style/TextAppearance.GoldBazaar.Headline6</item>
-        <item name="textAppearanceSubtitle1">@style/TextAppearance.GoldBazaar.Subtitle1</item>
-        <item name="textAppearanceBody1">@style/TextAppearance.GoldBazaar.Body1</item>
-        <item name="textAppearanceBody2">@style/TextAppearance.GoldBazaar.Body2</item>
-        <item name="textAppearanceCaption">@style/TextAppearance.GoldBazaar.Caption</item>
-
-        <!-- Shape appearance -->
-        <item name="shapeAppearanceSmallComponent">@style/ShapeAppearance.GoldBazaar.SmallComponent</item>
-        <item name="shapeAppearanceMediumComponent">@style/ShapeAppearance.GoldBazaar.MediumComponent</item>
-        <item name="shapeAppearanceLargeComponent">@style/ShapeAppearance.GoldBazaar.LargeComponent</item>
+        <!-- Varsayılan renkler (Palette1) -->
+        <item name="colorPrimary">@color/palette1_primary</item>
+        <item name="colorPrimaryVariant">@color/palette1_secondary</item>
+        <item name="colorOnPrimary">@color/palette1_on</item>
+        <item name="colorSecondary">@color/palette1_secondary</item>
+        <item name="colorOnSecondary">@color/palette1_on</item>
+        <item name="android:colorBackground">@color/palette1_secondary</item>
+        <item name="colorSurface">@color/palette1_secondary</item>
+        <item name="colorOnSurface">@color/palette1_on</item>
     </style>
 
-    <!-- Text Appearances -->
-    <style name="TextAppearance.GoldBazaar.Headline6" parent="TextAppearance.MaterialComponents.Headline6">
-        <item name="fontFamily">@font/poppins_medium</item>
-        <item name="android:fontFamily">@font/poppins_medium</item>
-        <item name="android:textSize">18sp</item>
+    <!-- Palette 1 -->
+    <style name="Theme.GoldBazaar.Palette1" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/palette1_primary</item>
+        <item name="colorPrimaryVariant">@color/palette1_secondary</item>
+        <item name="colorOnPrimary">@color/palette1_on</item>
+        <item name="colorSecondary">@color/palette1_secondary</item>
+        <item name="colorOnSecondary">@color/palette1_on</item>
+        <item name="android:colorBackground">@color/palette1_secondary</item>
+        <item name="colorSurface">@color/palette1_secondary</item>
+        <item name="colorOnSurface">@color/palette1_on</item>
     </style>
 
-    <style name="TextAppearance.GoldBazaar.Subtitle1" parent="TextAppearance.MaterialComponents.Subtitle1">
-        <item name="fontFamily">@font/poppins</item>
-        <item name="android:fontFamily">@font/poppins</item>
-        <item name="android:textSize">16sp</item>
+    <!-- Palette 4 -->
+    <style name="Theme.GoldBazaar.Palette4" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/palette4_primary</item>
+        <item name="colorPrimaryVariant">@color/palette4_secondary</item>
+        <item name="colorOnPrimary">@color/palette4_on</item>
+        <item name="colorSecondary">@color/palette4_secondary</item>
+        <item name="colorOnSecondary">@color/palette4_on</item>
+        <item name="android:colorBackground">@color/palette4_secondary</item>
+        <item name="colorSurface">@color/palette4_secondary</item>
+        <item name="colorOnSurface">@color/palette4_on</item>
     </style>
 
-    <style name="TextAppearance.GoldBazaar.Body1" parent="TextAppearance.MaterialComponents.Body1">
-        <item name="fontFamily">@font/poppins</item>
-        <item name="android:fontFamily">@font/poppins</item>
-        <item name="android:textSize">14sp</item>
+    <!-- Palette 5 -->
+    <style name="Theme.GoldBazaar.Palette5" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/palette5_primary</item>
+        <item name="colorPrimaryVariant">@color/palette5_secondary</item>
+        <item name="colorOnPrimary">@color/palette5_on</item>
+        <item name="colorSecondary">@color/palette5_secondary</item>
+        <item name="colorOnSecondary">@color/palette5_on</item>
+        <item name="android:colorBackground">@color/palette5_secondary</item>
+        <item name="colorSurface">@color/palette5_secondary</item>
+        <item name="colorOnSurface">@color/palette5_on</item>
     </style>
-
-    <style name="TextAppearance.GoldBazaar.Body2" parent="TextAppearance.MaterialComponents.Body2">
-        <item name="fontFamily">@font/poppins_light</item>
-        <item name="android:fontFamily">@font/poppins_light</item>
-        <item name="android:textSize">13sp</item>
+    <style name="DialogHeaderText" parent="TextAppearance.MaterialComponents.Headline6">
+        <item name="android:textColor">?attr/colorOnSurface</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:textStyle">bold</item>
     </style>
-
-    <style name="TextAppearance.GoldBazaar.Caption" parent="TextAppearance.MaterialComponents.Caption">
-        <item name="fontFamily">@font/poppins_light</item>
-        <item name="android:fontFamily">@font/poppins_light</item>
-        <item name="android:textSize">12sp</item>
-    </style>
-
-    <!-- Bottom Navigation Text Style -->
-
-    <!-- Shape Appearances -->
-    <style name="ShapeAppearance.GoldBazaar.SmallComponent" parent="ShapeAppearance.MaterialComponents.SmallComponent">
-        <item name="cornerFamily">rounded</item>
-        <item name="cornerSize">12dp</item>
-    </style>
-
-    <style name="ShapeAppearance.GoldBazaar.MediumComponent" parent="ShapeAppearance.MaterialComponents.MediumComponent">
-        <item name="cornerFamily">rounded</item>
-        <item name="cornerSize">16dp</item>
-    </style>
-
-    <style name="ShapeAppearance.GoldBazaar.LargeComponent" parent="ShapeAppearance.MaterialComponents.LargeComponent">
-        <item name="cornerFamily">rounded</item>
-        <item name="cornerSize">24dp</item>
-    </style>
-
-    <!-- Custom Widget Styles -->
-
-    <!-- Circle Image View -->
 
 </resources>

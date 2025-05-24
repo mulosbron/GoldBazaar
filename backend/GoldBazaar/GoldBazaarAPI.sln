@@ -1,0 +1,49 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.13.35825.156
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GoldBazaarAPI", "GoldBazaarAPI.csproj", "{6C68228D-8F21-4A10-AE9A-B3B2AFF7D110}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GoldBazaar.Domain", "..\GoldBazaar.Domain\GoldBazaar.Domain.csproj", "{2B45062C-AF7A-404C-BAE4-2352FD6DDD36}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GoldBazaar.Application", "..\GoldBazaar.Application\GoldBazaar.Application.csproj", "{8B30E1BD-4EF0-466B-A967-91DE4ABBC5C9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GoldBazaar.Infrastructure", "..\GoldBazaar.Infrastructure\GoldBazaar.Infrastructure.csproj", "{D5E39A19-8071-41CD-9290-D8E1682D5382}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GoldBazaar.Shared", "..\GoldBazaar.Shared\GoldBazaar.Shared.csproj", "{B5B3CD67-B245-4FBF-900D-04B6C006CC87}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6C68228D-8F21-4A10-AE9A-B3B2AFF7D110}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6C68228D-8F21-4A10-AE9A-B3B2AFF7D110}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6C68228D-8F21-4A10-AE9A-B3B2AFF7D110}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6C68228D-8F21-4A10-AE9A-B3B2AFF7D110}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2B45062C-AF7A-404C-BAE4-2352FD6DDD36}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2B45062C-AF7A-404C-BAE4-2352FD6DDD36}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2B45062C-AF7A-404C-BAE4-2352FD6DDD36}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2B45062C-AF7A-404C-BAE4-2352FD6DDD36}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8B30E1BD-4EF0-466B-A967-91DE4ABBC5C9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8B30E1BD-4EF0-466B-A967-91DE4ABBC5C9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8B30E1BD-4EF0-466B-A967-91DE4ABBC5C9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8B30E1BD-4EF0-466B-A967-91DE4ABBC5C9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D5E39A19-8071-41CD-9290-D8E1682D5382}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D5E39A19-8071-41CD-9290-D8E1682D5382}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D5E39A19-8071-41CD-9290-D8E1682D5382}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D5E39A19-8071-41CD-9290-D8E1682D5382}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B5B3CD67-B245-4FBF-900D-04B6C006CC87}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B5B3CD67-B245-4FBF-900D-04B6C006CC87}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B5B3CD67-B245-4FBF-900D-04B6C006CC87}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B5B3CD67-B245-4FBF-900D-04B6C006CC87}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {2C8D0EB0-DFB3-4449-AAD5-9F0423F85997}
+	EndGlobalSection
+EndGlobal

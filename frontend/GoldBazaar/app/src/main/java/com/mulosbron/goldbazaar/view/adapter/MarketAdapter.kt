@@ -38,7 +38,7 @@ class MarketAdapter(
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): GoldViewHolder {
         val view =
-            LayoutInflater.from(parent.context).inflate(R.layout.item_gold_price, parent, false)
+            LayoutInflater.from(parent.context).inflate(R.layout.item_asset_prices, parent, false)
         return GoldViewHolder(view)
     }
 
@@ -126,7 +126,7 @@ class MarketAdapter(
     /**
      * Format currency values according to Turkish format
      */
-    private fun formatCurrency(value: Int?): String {
+    private fun formatCurrency(value: Double?): String {
         return if (value != null) {
             currencyFormat.format(value).replace("\u00A0", " ")
         } else {

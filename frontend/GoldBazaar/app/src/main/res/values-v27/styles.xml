@@ -1,45 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <style name="Theme.GoldBazaar" parent="Theme.MaterialComponents.DayNight.NoActionBar">
-        <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/primary</item>
-        <item name="colorPrimaryVariant">@color/primary_dark</item>
-        <item name="colorOnPrimary">@color/white</item>
-
-        <!-- Secondary brand color. -->
-        <item name="colorSecondary">@color/accent</item>
-        <item name="colorSecondaryVariant">@color/accent_variant</item>
-        <item name="colorOnSecondary">@color/white</item>
-
-        <!-- Status bar and navigation bar colors -->
-        <item name="android:statusBarColor">@color/background</item>
-        <item name="android:windowLightStatusBar">true</item>
-        <item name="android:navigationBarColor">@color/background</item>
-        <item name="android:windowLightNavigationBar">true</item>
-
-        <!-- Background colors -->
-        <item name="android:colorBackground">@color/background</item>
-        <item name="colorSurface">@color/surface</item>
-        <item name="colorOnSurface">@color/text_primary</item>
-        <item name="colorOnBackground">@color/text_primary</item>
-
-        <!-- Text appearance -->
-        <item name="textAppearanceHeadline6">@style/TextAppearance.GoldBazaar.Headline6</item>
-        <item name="textAppearanceSubtitle1">@style/TextAppearance.GoldBazaar.Subtitle1</item>
-        <item name="textAppearanceBody1">@style/TextAppearance.GoldBazaar.Body1</item>
-        <item name="textAppearanceBody2">@style/TextAppearance.GoldBazaar.Body2</item>
-        <item name="textAppearanceCaption">@style/TextAppearance.GoldBazaar.Caption</item>
-
-        <!-- Shape appearance -->
-        <item name="shapeAppearanceSmallComponent">
-            @style/ShapeAppearance.GoldBazaar.SmallComponent
-        </item>
-        <item name="shapeAppearanceMediumComponent">
-            @style/ShapeAppearance.GoldBazaar.MediumComponent
-        </item>
-        <item name="shapeAppearanceLargeComponent">
-            @style/ShapeAppearance.GoldBazaar.LargeComponent
-        </item>
+    <!-- Palette 1 -->
+    <style name="Theme.GoldBazaar.Palette1" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/palette1_primary</item>
+        <item name="colorPrimaryVariant">@color/palette1_secondary</item>
+        <item name="colorOnPrimary">@color/palette1_on</item>
+        <item name="colorSecondary">@color/palette1_secondary</item>
+        <item name="colorOnSecondary">@color/palette1_on</item>
+        <item name="android:colorBackground">@color/palette1_secondary</item>
+        <item name="colorSurface">@color/palette1_secondary</item>
+        <item name="colorOnSurface">@color/palette1_on</item>
     </style>
+
+    <!-- Palette 4 -->
+    <style name="Theme.GoldBazaar.Palette4" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/palette4_primary</item>
+        <item name="colorPrimaryVariant">@color/palette4_secondary</item>
+        <item name="colorOnPrimary">@color/palette4_on</item>
+        <item name="colorSecondary">@color/palette4_secondary</item>
+        <item name="colorOnSecondary">@color/palette4_on</item>
+        <item name="android:colorBackground">@color/palette4_secondary</item>
+        <item name="colorSurface">@color/palette4_secondary</item>
+        <item name="colorOnSurface">@color/palette4_on</item>
+    </style>
+
+    <!-- Palette 5 -->
+    <style name="Theme.GoldBazaar.Palette5" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/palette5_primary</item>
+        <item name="colorPrimaryVariant">@color/palette5_secondary</item>
+        <item name="colorOnPrimary">@color/palette5_on</item>
+        <item name="colorSecondary">@color/palette5_secondary</item>
+        <item name="colorOnSecondary">@color/palette5_on</item>
+        <item name="android:colorBackground">@color/palette5_secondary</item>
+        <item name="colorSurface">@color/palette5_secondary</item>
+        <item name="colorOnSurface">@color/palette5_on</item>
+    </style>
+
 </resources>

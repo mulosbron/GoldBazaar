@@ -16,9 +16,11 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
+import android.util.Log
 
 class WalletViewModel(application: Application) : AndroidViewModel(application), KoinComponent {
 
+    private val TAG = "WalletVM"
     private val repository = WalletLocalRepository(application)
     private val marketRepository: IMarketRepository by inject()
     private val ioScope = CoroutineScope(Dispatchers.IO)
@@ -48,7 +50,7 @@ class WalletViewModel(application: Application) : AndroidViewModel(application),
 
     // Current selected asset
     private val _selectedAsset = MutableLiveData<String?>()
-    val selectedAsset: MutableLiveData<String?> get() = _selectedAsset
+    val selectedAsset: LiveData<String?> get() = _selectedAsset
 
     // Market data
     private val _goldPrices = MutableLiveData<Map<String, DailyGoldPrice>>()
@@ -63,127 +65,108 @@ class WalletViewModel(application: Application) : AndroidViewModel(application),
 
     fun loadData() {
         _uiState.value = WalletUiState.Loading
-
         viewModelScope.launch {
             try {
-                // Load gold price data from market repository
-                val pricesResult = marketRepository.getDailyPrices()
-                val percentagesResult = marketRepository.getDailyPercentages()
-
-                val marketPrices = if (pricesResult is com.mulosbron.goldbazaar.service.network.NetworkResult.Success) {
-                    pricesResult.data
-                } else {
-                    emptyMap()
-                }
-
-                val marketPercentages = if (percentagesResult is com.mulosbron.goldbazaar.service.network.NetworkResult.Success) {
-                    percentagesResult.data
-                } else {
-                    emptyMap()
-                }
-
-                _goldPrices.value = marketPrices
-                _dailyPercentages.value = marketPercentages
-
-                // Now load wallet data
+                // 1️⃣ LOCAL --------------------------------------------------
                 val allTransactions = repository.getAllTransactions()
-                val assetList = repository.getUniqueAssets()
+                val assetList       = repository.getUniqueAssets()
+                Log.d(TAG, "TX count = ${allTransactions.size}  assets = $assetList")
 
+                _transactions.value = allTransactions
+                _assets.value       = assetList
+
+                // 2️⃣ MARKET -------------------------------------------------
+                val pricesResult       = marketRepository.getDailyPrices()
+                val percentagesResult  = marketRepository.getDailyPercentages()
+
+                Log.d(TAG, "pricesResult = $pricesResult")
+                Log.d(TAG, "pctResult    = $percentagesResult")
+
+                val marketPrices = if (pricesResult is com.mulosbron.goldbazaar.service.network.NetworkResult.Success)
+                    pricesResult.data else emptyMap()
+                val marketPct   = if (percentagesResult is com.mulosbron.goldbazaar.service.network.NetworkResult.Success)
+                    percentagesResult.data else emptyMap()
+
+                Log.d(TAG, "marketPrices.keys = ${marketPrices.keys}")
+
+                _goldPrices.value       = marketPrices
+                _dailyPercentages.value = marketPct
+
+                // 3️⃣ CALC ---------------------------------------------------
                 val avgPrices = mutableMapOf<String, Double>()
                 val profitMap = mutableMapOf<String, Double>()
 
                 assetList.forEach { asset ->
                     avgPrices[asset] = repository.calculateAverageBuyingPrice(asset)
 
-                    // Use actual market price for profit calculation if available
-                    val currentPrice = marketPrices[asset]?.sellingPrice?.toDouble() ?: 0.0
-                    profitMap[asset] = repository.calculateProfit(asset, currentPrice)
+                    val cur = marketPrices[asset]?.sellingPrice ?: 0.0
+                    Log.d(TAG, "asset=$asset  curPrice=$cur")
+
+                    profitMap[asset] = repository.calculateProfit(asset, cur)
                 }
 
-                withContext(Dispatchers.Main) {
-                    _transactions.value = allTransactions
-                    _assets.value = assetList
-                    _averagePrices.value = avgPrices
-                    _profits.value = profitMap
-                    _uiState.value = WalletUiState.Success
-                }
+                Log.d(TAG, "avgPrices = $avgPrices")
+                Log.d(TAG, "profitMap = $profitMap")
+
+                _averagePrices.value = avgPrices
+                _profits.value       = profitMap
+                _uiState.value       = WalletUiState.Success
             } catch (e: Exception) {
-                withContext(Dispatchers.Main) {
-                    _uiState.value = WalletUiState.Error(e.message ?: "Bilinmeyen bir hata oluştu")
-                }
+                Log.e(TAG, "loadData error", e)
+                _uiState.value = WalletUiState.Error(e.message ?: "Bilinmeyen hata")
             }
         }
     }
 
     fun loadTransactionsForAsset(asset: String) {
         _uiState.value = WalletUiState.Loading
-        _selectedAsset.value = asset
-
-        ioScope.launch {
+        viewModelScope.launch {
             try {
+                _selectedAsset.value = asset
                 val assetTransactions = repository.getTransactionsByAsset(asset)
-                withContext(Dispatchers.Main) {
-                    _selectedAssetTransactions.value = assetTransactions
-                    _uiState.value = WalletUiState.Success
-                }
+                _selectedAssetTransactions.value = assetTransactions
+                _uiState.value = WalletUiState.Success
             } catch (e: Exception) {
-                withContext(Dispatchers.Main) {
-                    _uiState.value = WalletUiState.Error(e.message ?: "İşlemler yüklenirken bir hata oluştu")
-                }
+                _uiState.value = WalletUiState.Error(e.message ?: "İşlemler yüklenirken bir hata oluştu")
             }
         }
     }
 
     fun addTransaction(transaction: Transaction) {
         _uiState.value = WalletUiState.Loading
-
-        ioScope.launch {
+        viewModelScope.launch {
             try {
                 repository.addTransaction(transaction)
-
                 if (_selectedAsset.value == transaction.asset) {
                     val assetTransactions = repository.getTransactionsByAsset(transaction.asset)
-                    withContext(Dispatchers.Main) {
-                        _selectedAssetTransactions.value = assetTransactions
-                    }
+                    _selectedAssetTransactions.value = assetTransactions
                 }
-
                 loadData()
             } catch (e: Exception) {
-                withContext(Dispatchers.Main) {
-                    _uiState.value = WalletUiState.Error(e.message ?: "İşlem eklenirken bir hata oluştu")
-                }
+                _uiState.value = WalletUiState.Error(e.message ?: "İşlem eklenirken bir hata oluştu")
             }
         }
     }
 
     fun updateTransaction(transactionId: String, updatedTransaction: Transaction) {
         _uiState.value = WalletUiState.Loading
-
-        ioScope.launch {
+        viewModelScope.launch {
             try {
                 repository.updateTransaction(transactionId, updatedTransaction)
-
                 if (_selectedAsset.value == updatedTransaction.asset) {
                     val assetTransactions = repository.getTransactionsByAsset(updatedTransaction.asset)
-                    withContext(Dispatchers.Main) {
-                        _selectedAssetTransactions.value = assetTransactions
-                    }
+                    _selectedAssetTransactions.value = assetTransactions
                 }
-
                 loadData()
             } catch (e: Exception) {
-                withContext(Dispatchers.Main) {
-                    _uiState.value = WalletUiState.Error(e.message ?: "İşlem güncellenirken bir hata oluştu")
-                }
+                _uiState.value = WalletUiState.Error(e.message ?: "İşlem güncellenirken bir hata oluştu")
             }
         }
     }
 
     fun deleteTransaction(transactionId: String) {
         _uiState.value = WalletUiState.Loading
-
-        ioScope.launch {
+        viewModelScope.launch {
             try {
                 val transactionToDelete = repository.getAllTransactions().find { it.id == transactionId }
                 val assetOfTransaction = transactionToDelete?.asset
@@ -192,41 +175,28 @@ class WalletViewModel(application: Application) : AndroidViewModel(application),
 
                 if (_selectedAsset.value == assetOfTransaction) {
                     val assetTransactions = repository.getTransactionsByAsset(assetOfTransaction!!)
-                    withContext(Dispatchers.Main) {
-                        _selectedAssetTransactions.value = assetTransactions
-                    }
+                    _selectedAssetTransactions.value = assetTransactions
                 }
 
                 loadData()
             } catch (e: Exception) {
-                withContext(Dispatchers.Main) {
-                    _uiState.value = WalletUiState.Error(e.message ?: "İşlem silinirken bir hata oluştu")
-                }
+                _uiState.value = WalletUiState.Error(e.message ?: "İşlem silinirken bir hata oluştu")
             }
         }
     }
 
     fun deleteAsset(asset: String) {
         _uiState.value = WalletUiState.Loading
-
-        ioScope.launch {
+        viewModelScope.launch {
             try {
                 repository.deleteAssetTransactions(asset)
-
-                // Clear selected asset transactions if this was the selected asset
                 if (_selectedAsset.value == asset) {
-                    withContext(Dispatchers.Main) {
-                        _selectedAssetTransactions.value = emptyList()
-                        _selectedAsset.value = null
-                    }
+                    _selectedAssetTransactions.value = emptyList()
+                    _selectedAsset.value = null
                 }
-
-                // Reload all data to update summaries
                 loadData()
             } catch (e: Exception) {
-                withContext(Dispatchers.Main) {
-                    _uiState.value = WalletUiState.Error(e.message ?: "Varlık silinirken bir hata oluştu")
-                }
+                _uiState.value = WalletUiState.Error(e.message ?: "Varlık silinirken bir hata oluştu")
             }
         }
     }
@@ -236,34 +206,48 @@ class WalletViewModel(application: Application) : AndroidViewModel(application),
         return _goldPrices.value?.keys?.toList() ?: emptyList()
     }
 
-    // Get current price for an asset (for pre-filling the price field)
+    // fiyatı getirirken de log ekle
     fun getCurrentPrice(asset: String, isBuying: Boolean): Double {
-        val prices = _goldPrices.value?.get(asset)
-        return if (isBuying) {
-            prices?.buyingPrice?.toDouble() ?: 0.0
-        } else {
-            prices?.sellingPrice?.toDouble() ?: 0.0
-        }
+        val key       = asset.replace("[\\u00A0\\s]+".toRegex(), " ").trim()
+        val priceObj  = _goldPrices.value?.get(key)
+        val raw       = if (isBuying) priceObj?.buyingPrice else priceObj?.sellingPrice
+        Log.d(TAG, "getCurrentPrice key='$key'  value=$raw")
+        return raw ?: 0.0
     }
 
+
+
+//    fun getCurrentPrice(asset: String, isBuying: Boolean): Double {
+//        return try {
+//            val prices = _goldPrices.value?.get(asset)
+//            if (isBuying) {
+//                prices?.buyingPrice?.toDouble() ?: 0.0
+//            } else {
+//                prices?.sellingPrice?.toDouble() ?: 0.0
+//            }
+//        } catch (e: Exception) {
+//            0.0
+//        }
+//    }
+
     fun calculateTotalPortfolioValue(): Double {
-        var totalValue = 0.0
-        _assets.value?.forEach { asset ->
-            val transactions = repository.getTransactionsByAsset(asset)
-            var netAmount = 0.0
-
-            transactions.forEach { transaction ->
-                if (transaction.transactionType == "buy") {
-                    netAmount += transaction.amount
-                } else if (transaction.transactionType == "sell") {
-                    netAmount -= transaction.amount
+        try {
+            var total = 0.0
+            _assets.value?.forEach { asset ->
+                val tx = repository.getTransactionsByAsset(asset)
+                val net = tx.sumOf {
+                    if (it.transactionType == "buy") it.amount
+                    else -it.amount
                 }
+                val cur = _goldPrices.value?.get(asset)?.sellingPrice ?: 0.0
+                Log.d(TAG, "PORF asset=$asset  netAmount=$net  cur=$cur")
+                total += net * cur
             }
-
-            val currentPrice = _goldPrices.value?.get(asset)?.sellingPrice?.toDouble() ?: 0.0
-            totalValue += netAmount * currentPrice
+            Log.d(TAG, "PORTF TOTAL = $total")
+            return total
+        } catch (e: Exception) {
+            Log.e(TAG, "calcTotal error", e)
+            return 0.0
         }
-
-        return totalValue
     }
 }

@@ -4,18 +4,25 @@ object NetworkConstants {
     enum class Environment {
         DEVELOPMENT, STAGING, PRODUCTION
     }
-    private val ACTIVE_ENVIRONMENT = Environment.DEVELOPMENT
+    private var _activeEnvironment = Environment.STAGING
+    
+    val activeEnvironment: Environment
+        get() = _activeEnvironment
 
     private const val DEV_BASE_URL = "http://10.0.2.2:5000/"
-    private const val STAGING_BASE_URL = "https://staging-api.goldbazaar.com/"
-    private const val PROD_BASE_URL = "https://api.goldbazaar.com/"
+    private const val STAGING_BASE_URL = "https://staging-api.goldmarketcap.xyz/"
+    private const val PROD_BASE_URL = "https://api.goldmarketcap.xyz/"
 
     val BASE_URL: String
-        get() = when (ACTIVE_ENVIRONMENT) {
+        get() = when (_activeEnvironment) {
             Environment.DEVELOPMENT -> DEV_BASE_URL
             Environment.STAGING -> STAGING_BASE_URL
             Environment.PRODUCTION -> PROD_BASE_URL
         }
+
+    // Staging ve Production için özel ayarlar
+    val isStagingOrProduction: Boolean
+        get() = _activeEnvironment == Environment.STAGING || _activeEnvironment == Environment.PRODUCTION
 
     const val CACHE_VALIDITY_DURATION = 300000L      // 5 dakika (önbellek geçerlilik süresi)
     const val NETWORK_TIMEOUT_SECONDS = 30L          // Ağ zaman aşımı

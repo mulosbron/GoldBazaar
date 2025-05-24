@@ -10,15 +10,16 @@
     android:clickable="true"
     android:focusable="true"
     android:contentDescription="@string/news_item"
-    app:cardBackgroundColor="@color/card_background"
+    app:cardBackgroundColor="?attr/colorSurface"
     app:cardCornerRadius="16dp"
     app:cardElevation="2dp"
-    app:rippleColor="@color/primary_light">
+    app:rippleColor="?attr/colorPrimary">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:padding="16dp">
+        android:padding="16dp"
+        android:background="?attr/colorPrimary">
 
         <!-- News Image Card -->
         <com.google.android.material.card.MaterialCardView
@@ -48,9 +49,8 @@
             android:layout_marginStart="12dp"
             android:ellipsize="end"
             android:maxLines="2"
-            android:textAppearance="?attr/textAppearanceSubtitle1"
-            android:textColor="@color/text_primary"
             android:textStyle="bold"
+            android:textColor="?attr/colorOnSurface"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/imageCard"
             app:layout_constraintTop_toTopOf="parent"
@@ -65,8 +65,7 @@
             android:layout_marginTop="4dp"
             android:ellipsize="end"
             android:maxLines="1"
-            android:textAppearance="?attr/textAppearanceCaption"
-            android:textColor="@color/text_secondary"
+            android:textColor="?attr/colorOnSurface"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/imageCard"
             app:layout_constraintTop_toBottomOf="@+id/newsTitle"
@@ -80,8 +79,7 @@
             android:layout_marginTop="16dp"
             android:ellipsize="end"
             android:maxLines="3"
-            android:textAppearance="?attr/textAppearanceBody2"
-            android:textColor="@color/text_primary"
+            android:textColor="?attr/colorOnSurface"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/imageCard"
@@ -90,7 +88,7 @@
         <!-- Read More Button -->
         <com.google.android.material.button.MaterialButton
             android:id="@+id/readMoreButton"
-            style="@style/Widget.MaterialComponents.Button.TextButton"
+            style="@style/Widget.MaterialComponents.Button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
@@ -98,10 +96,11 @@
             android:minHeight="48dp"
             android:text="@string/read_more"
             android:textAllCaps="false"
-            android:textColor="@color/primary"
+            android:textColor="?attr/colorOnSurface"
+            app:backgroundTint="?attr/colorPrimary"
             app:icon="@drawable/ic_arrow_right"
             app:iconGravity="end"
-            app:iconTint="@color/primary"
+            app:iconTint="?attr/colorOnSurface"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/newsDescription" />
     </androidx.constraintlayout.widget.ConstraintLayout>

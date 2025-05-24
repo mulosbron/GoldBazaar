@@ -2,6 +2,15 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name">GoldBazaar</string>
 
+    <!-- BottomNav uyarısı -->
+    <string name="please_login_to_continue">Lütfen devam etmek için giriş yapın</string>
+
+    <!-- Çıkış diyalogu -->
+    <string name="logout">Hesaptan Çıkış</string>
+    <string name="logout_confirm">Hesabınızdan çıkış yapmak istediğinize emin misiniz?</string>
+    <string name="yes">Evet</string>
+    <string name="no">Hayır</string>
+
     <!-- Kullanıcı İşlemleri -->
     <string name="signup">Kaydol</string>
     <string name="login">Giriş Yap</string>
@@ -16,7 +25,6 @@
     <string name="remember_me">Beni Hatırla</string>
     
     <!-- Navigation ve Header -->
-    <string name="todo">TODO</string>
     <string name="markets">Piyasalar</string>
     <string name="wallet">Cüzdan</string>
     <string name="news">Haberler</string>
@@ -29,7 +37,6 @@
     <!-- UI Öğeleri -->
     <string name="welcome_back">Tekrar Hoşgeldin, %1$s</string>
     <string name="logged_out_successfully">Başarıyla çıkış yapıldı</string>
-    <string name="please_login_to_continue">Devam etmek için lütfen giriş yapın</string>
     <string name="settings">Ayarlar</string>
     <string name="loading">Yükleniyor…</string>
 
@@ -80,9 +87,7 @@
     <string name="sell">Satış</string>
     <string name="amount">Miktar</string>
     <string name="price">Fiyat</string>
-    <string name="delete">Sil</string>
-    <string name="total_value">Toplam Değer</string>
-    <string name="empty_wallet_message">Cüzdanınızda hiç altın bulunmamaktadır</string>
-    <string name="add_asset">Yeni Varlık Ekle</string>
-    <string name="empty_transactions_message">Bu altın türü için işlem bulunmamaktadır</string>
+    <string name="update_transaction">İşlemi Güncelle</string>
+    <string name="add_transaction">Yeni İşlem Ekle</string>
+
 </resources>

@@ -23,45 +23,120 @@ class MarketRepository(
     // Yüzdelik değişimler için önbellek
     private var cachedDailyPercentages: Map<String, DailyGoldPercentage>? = null
 
-    override suspend fun getDailyPrices(): NetworkResult<Map<String, DailyGoldPrice>> {
-        val currentTime = System.currentTimeMillis()
-        val lastFetchTime = sharedPrefsManager.getDailyPricesLastFetchTime()
+    override suspend fun getDailyPrices(
+    ): NetworkResult<Map<String, DailyGoldPrice>> {
 
-        // Önbellek geçerli mi kontrol et
-        if (cachedDailyPrices != null &&
-            currentTime - lastFetchTime < NetworkConstants.CACHE_VALIDITY_DURATION
-        ) {
-            return NetworkResult.success(cachedDailyPrices!!)
+        val now          = System.currentTimeMillis()
+        val lastFetched  = sharedPrefsManager.getDailyPricesLastFetchTime()
+
+        cachedDailyPrices?.let { cached ->
+            if (now - lastFetched < NetworkConstants.CACHE_VALIDITY_DURATION) {
+                return NetworkResult.success(cached)
+            }
         }
 
-        // Önbellek geçerli değilse API'den getir
+        // ===== API çağrısı ve dönüştürme =====
         return safeApiCall {
-            val freshData = goldPricesAPI.getLatestGoldPricesSuspend()
-            cachedDailyPrices = freshData
-            sharedPrefsManager.saveDailyPricesLastFetchTime(currentTime)
-            freshData
+            val resp = goldPricesAPI.getLatestGoldPrices()   // ApiResponse<PricePayload>
+
+            if (!resp.success)
+                throw IllegalStateException(resp.message ?: "Unknown error")
+
+            // JSON ➜ Eski Map<String, DailyGoldPrice>
+            // Daily prices mapping
+            val mapped = resp.data.data.mapValues { (raw, d) ->
+                DailyGoldPrice(
+                    name         = normalKey(raw),         //  ←
+                    buyingPrice  = d.buyingPrice,
+                    sellingPrice = d.sellingPrice,
+                    lastUpdated  = resp.data.date
+                )
+            }
+
+
+
+            // Önbellek & timestamp güncelle
+            cachedDailyPrices = mapped
+            sharedPrefsManager.saveDailyPricesLastFetchTime(now)
+
+            mapped
         }
     }
+    private fun normalKey(raw: String): String =
+        raw.replace(Regex("[\\u00A0\\s]+"), " ")   // NBSP + tüm boşluk → tek boşluk
+            .trim()
+            .lowercase()                           // Büyük-küçük farkını da sil
 
-    override suspend fun getDailyPercentages(): NetworkResult<Map<String, DailyGoldPercentage>> {
-        val currentTime = System.currentTimeMillis()
-        val lastFetchTime = sharedPrefsManager.getDailyPercentagesLastFetchTime()
 
-        // Önbellek geçerli mi kontrol et
-        if (cachedDailyPercentages != null &&
-            currentTime - lastFetchTime < NetworkConstants.CACHE_VALIDITY_DURATION
-        ) {
-            return NetworkResult.success(cachedDailyPercentages!!)
+
+
+//    override suspend fun getDailyPrices(): NetworkResult<Map<String, DailyGoldPrice>> {
+//        val currentTime = System.currentTimeMillis()
+//        val lastFetchTime = sharedPrefsManager.getDailyPricesLastFetchTime()
+//
+//        // Önbellek geçerli mi kontrol et
+//        if (cachedDailyPrices != null &&
+//            currentTime - lastFetchTime < NetworkConstants.CACHE_VALIDITY_DURATION
+//        ) {
+//            return NetworkResult.success(cachedDailyPrices!!)
+//        }
+//
+//        // Önbellek geçerli değilse API'den getir
+//        return safeApiCall {
+//            val freshData = goldPricesAPI.getLatestGoldPricesSuspend()
+//            cachedDailyPrices = freshData
+//            sharedPrefsManager.saveDailyPricesLastFetchTime(currentTime)
+//            freshData
+//        }
+//    }
+
+    override suspend fun getDailyPercentages(
+    ): NetworkResult<Map<String, DailyGoldPercentage>> = safeApiCall {
+
+        val resp = dailyPercentagesAPI.getLatestDailyPercentages()
+
+        if (!resp.success)
+            throw IllegalStateException(resp.message ?: "Unknown error")
+
+        //  🡢  Map<String, DailyGoldPercentage>
+        // Daily percentages mapping
+        val mapped = resp.data.percentageDifference.mapValues { (name, pct) ->
+            DailyGoldPercentage(
+                name         = name,
+                buyingPrice  = pct.buyingPrice,     //  <<< double
+                sellingPrice = pct.sellingPrice,
+                lastUpdated  = resp.data.date
+            )
         }
 
-        // Önbellek geçerli değilse API'den getir
-        return safeApiCall {
-            val freshData = dailyPercentagesAPI.getLatestDailyPercentagesSuspend()
-            cachedDailyPercentages = freshData
-            sharedPrefsManager.saveDailyPercentagesLastFetchTime(currentTime)
-            freshData
-        }
+
+        // Önbellek + timestamp
+        cachedDailyPercentages = mapped
+        sharedPrefsManager.saveDailyPercentagesLastFetchTime(System.currentTimeMillis())
+
+        mapped
     }
+
+
+//    override suspend fun getDailyPercentages(): NetworkResult<Map<String, DailyGoldPercentage>> {
+//        val currentTime = System.currentTimeMillis()
+//        val lastFetchTime = sharedPrefsManager.getDailyPercentagesLastFetchTime()
+//
+//        // Önbellek geçerli mi kontrol et
+//        if (cachedDailyPercentages != null &&
+//            currentTime - lastFetchTime < NetworkConstants.CACHE_VALIDITY_DURATION
+//        ) {
+//            return NetworkResult.success(cachedDailyPercentages!!)
+//        }
+//
+//        // Önbellek geçerli değilse API'den getir
+//        return safeApiCall {
+//            val freshData = dailyPercentagesAPI.getLatestDailyPercentagesSuspend()
+//            cachedDailyPercentages = freshData
+//            sharedPrefsManager.saveDailyPercentagesLastFetchTime(currentTime)
+//            freshData
+//        }
+//    }
 
     override suspend fun getGoldPriceByName(productName: String): NetworkResult<DailyGoldPrice> {
         // Önce önbellekte var mı kontrol et

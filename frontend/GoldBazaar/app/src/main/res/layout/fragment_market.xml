@@ -5,6 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="?android:attr/colorBackground"
     tools:context=".view.fragment.market.MarketFragment">
 
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
@@ -24,33 +25,29 @@
                 android:layout_height="wrap_content"
                 android:paddingBottom="16dp">
 
-                <!-- Last Updated Combined Label -->
                 <TextView
                     android:id="@+id/lastUpdatedCombined"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
                     android:layout_marginEnd="16dp"
-                    android:textAppearance="?attr/textAppearanceCaption"
-                    android:textColor="@color/text_secondary"
                     android:textSize="10sp"
+                    android:textColor="?attr/colorOnPrimary"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    tools:text="Son Güncelleme: 01/05/2025 14:30"
-                    tools:ignore="SmallSp" />
+                    tools:text="Son Güncelleme: 01/05/2025 14:30" />
 
-                <!-- Search Section -->
                 <com.google.android.material.card.MaterialCardView
                     android:id="@+id/searchCard"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="16dp"
                     android:layout_marginTop="8dp"
-                    app:cardBackgroundColor="@color/card_background"
                     app:cardCornerRadius="16dp"
                     app:cardElevation="2dp"
-                    app:layout_constraintEnd_toEndOf="parent"
+                    app:cardBackgroundColor="?android:attr/colorBackground"
                     app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/lastUpdatedCombined">
 
                     <com.google.android.material.textfield.TextInputLayout
@@ -64,20 +61,22 @@
                         app:boxCornerRadiusTopEnd="12dp"
                         app:boxCornerRadiusTopStart="12dp"
                         app:endIconMode="clear_text"
-                        app:hintTextColor="@color/primary"
+                        android:background="?android:attr/colorSecondary"
+                        app:hintTextColor="?attr/colorOnPrimary"
                         app:startIconDrawable="@drawable/ic_search"
-                        app:startIconTint="@color/primary">
+                        app:startIconTint="?attr/colorOnPrimary">
 
                         <com.google.android.material.textfield.TextInputEditText
                             android:id="@+id/searchEditText"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:inputType="text"
-                            android:maxLines="1" />
+                            android:maxLines="1"
+                            android:textColor="?attr/colorOnPrimary"
+                            android:background="@android:color/transparent" />
                     </com.google.android.material.textfield.TextInputLayout>
                 </com.google.android.material.card.MaterialCardView>
 
-                <!-- Gold Items RecyclerView -->
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rvMarket"
                     android:layout_width="0dp"
@@ -85,21 +84,20 @@
                     android:layout_marginTop="16dp"
                     android:clipToPadding="false"
                     android:paddingHorizontal="4dp"
-                    app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/searchCard"
                     tools:itemCount="4"
-                    tools:listitem="@layout/item_gold_price" />
+                    tools:listitem="@layout/item_asset_prices" />
 
-                <!-- Empty State -->
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:id="@+id/emptyStateContainer"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="32dp"
                     android:visibility="gone"
-                    app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toBottomOf="@id/searchCard">
 
                     <ImageView
@@ -108,10 +106,10 @@
                         android:layout_height="120dp"
                         android:contentDescription="@string/empty_market"
                         android:src="@drawable/ic_info"
-                        app:layout_constraintEnd_toEndOf="parent"
+                        app:tint="?attr/colorOnPrimary"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:tint="@color/text_secondary" />
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
 
                     <TextView
                         android:id="@+id/emptyStateTitle"
@@ -119,10 +117,9 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="16dp"
                         android:text="@string/empty_market"
-                        android:textAppearance="?attr/textAppearanceSubtitle1"
-                        android:textColor="@color/text_primary"
-                        app:layout_constraintEnd_toEndOf="parent"
+                        android:textColor="?attr/colorOnPrimary"
                         app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/emptyStateImage" />
 
                     <TextView
@@ -133,10 +130,9 @@
                         android:layout_marginTop="8dp"
                         android:gravity="center"
                         android:text="@string/no_value"
-                        android:textAppearance="?attr/textAppearanceBody2"
-                        android:textColor="@color/text_secondary"
-                        app:layout_constraintEnd_toEndOf="parent"
+                        android:textColor="?attr/colorOnPrimary"
                         app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/emptyStateTitle" />
 
                     <com.google.android.material.button.MaterialButton
@@ -147,17 +143,18 @@
                         android:contentDescription="@string/try_again"
                         android:minHeight="48dp"
                         android:text="@string/try_again"
-                        app:backgroundTint="@color/primary"
+                        android:backgroundTint="?attr/colorSecondary"
+                        android:textColor="?attr/colorOnSecondary"
                         app:cornerRadius="24dp"
-                        app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toBottomOf="@id/emptyStateDescription" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
+
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.core.widget.NestedScrollView>
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
-    <!-- Loading Progress -->
     <com.google.android.material.progressindicator.CircularProgressIndicator
         android:id="@+id/progressBar"
         android:layout_width="wrap_content"
@@ -165,10 +162,8 @@
         android:layout_gravity="center"
         android:indeterminate="true"
         android:visibility="gone"
-        app:indicatorColor="@color/primary"
+        app:indicatorColor="?attr/colorSecondary"
         app:indicatorSize="48dp"
-        app:trackColor="@color/primary_light"
         app:trackThickness="4dp" />
 
-    <!-- FAB (sıralama butonu) kaldırıldı -->
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

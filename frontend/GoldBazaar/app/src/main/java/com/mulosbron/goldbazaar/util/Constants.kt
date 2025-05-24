@@ -1,6 +1,8 @@
 package com.mulosbron.goldbazaar.util
 
 import android.os.Build
+import com.mulosbron.goldbazaar.util.NetworkConstants.Environment
+import com.mulosbron.goldbazaar.util.NetworkConstants.activeEnvironment
 
 object Constants {
 
@@ -17,5 +19,7 @@ object Constants {
         const val KEY_USERNAME = "username"
     }
 
-    const val IS_DEBUG = true  // Geliştirme sırasında true, release için false yapılmalı
+    // Development ortamında debug açık, staging ve production'da kapalı
+    val IS_DEBUG: Boolean
+        get() = activeEnvironment == Environment.DEVELOPMENT
 }

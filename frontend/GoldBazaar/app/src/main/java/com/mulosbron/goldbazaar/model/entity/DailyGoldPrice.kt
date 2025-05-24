@@ -2,8 +2,8 @@ package com.mulosbron.goldbazaar.model.entity
 
 data class DailyGoldPrice(
     val name: String,
-    val buyingPrice: Int? = null,
-    val sellingPrice: Int? = null,
+    val buyingPrice: Double? = null,
+    val sellingPrice: Double? = null,
     val lastUpdated: String? = null
 ) {
 

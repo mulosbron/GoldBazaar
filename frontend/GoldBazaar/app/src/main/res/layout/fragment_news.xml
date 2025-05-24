@@ -5,67 +5,62 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="?android:attr/colorBackground"
     tools:context=".view.fragment.news.NewsFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <!-- Last Updated Combined Label -->
         <TextView
             android:id="@+id/lastUpdatedCombined"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="16dp"
-            android:textAppearance="?attr/textAppearanceCaption"
-            android:textColor="@color/text_secondary"
             android:textSize="10sp"
+            android:textColor="?attr/colorOnPrimary"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:text="Son Güncelleme: 01/05/2025 14:30"
-            tools:ignore="SmallSp" />
+            tools:text="Son Güncelleme: 01/05/2025 14:30" />
 
-        <!-- News Header Card -->
         <com.google.android.material.card.MaterialCardView
             android:id="@+id/newsHeaderCard"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="16dp"
             android:layout_marginTop="8dp"
-            app:cardBackgroundColor="@color/card_background"
             app:cardCornerRadius="16dp"
             app:cardElevation="2dp"
-            app:layout_constraintEnd_toEndOf="parent"
+            app:cardBackgroundColor="?android:attr/colorBackground"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/lastUpdatedCombined"
-            tools:ignore="Overdraw">
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/lastUpdatedCombined">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="?attr/colorPrimary"
                 android:padding="16dp">
 
-                <!-- Legal Disclaimer with Compound Drawable -->
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:drawablePadding="4dp"
                     app:drawableStartCompat="@drawable/ic_info"
-                    app:drawableTint="@color/text_secondary_high_contrast"
+                    app:drawableTint="?attr/colorOnSurface"
                     android:text="@string/legal_disclaimer_short"
                     android:textAppearance="@style/TextAppearance.MaterialComponents.Caption"
-                    android:textColor="@color/text_secondary_high_contrast"
-                    android:textSize="10sp"
+                    android:textColor="?attr/colorOnSurface"
+
                     android:lineSpacingExtra="2dp"
-                    app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    tools:ignore="SmallSp" />
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
             </androidx.constraintlayout.widget.ConstraintLayout>
         </com.google.android.material.card.MaterialCardView>
 
-        <!-- News RecyclerView -->
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvNews"
             android:layout_width="0dp"
@@ -73,25 +68,23 @@
             android:layout_marginTop="16dp"
             android:clipToPadding="false"
             android:paddingBottom="80dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/newsHeaderCard"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
             tools:itemCount="5"
             tools:listitem="@layout/item_news" />
 
-        <!-- Empty State -->
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/emptyStateContainer"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_marginTop="32dp"
             android:visibility="gone"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/newsHeaderCard"
-            tools:visibility="visible">
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent">
 
             <ImageView
                 android:id="@+id/emptyStateImage"
@@ -99,10 +92,10 @@
                 android:layout_height="120dp"
                 android:contentDescription="@string/empty_news"
                 android:src="@drawable/ic_info"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
+                app:tint="?attr/colorOnPrimary"
                 app:layout_constraintTop_toTopOf="parent"
-                app:tint="@color/text_secondary" />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
 
             <TextView
                 android:id="@+id/emptyStateTitle"
@@ -110,11 +103,11 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
                 android:text="@string/empty_news"
+                android:textColor="?attr/colorOnPrimary"
                 android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle1"
-                android:textColor="@color/text_primary"
-                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/emptyStateImage"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/emptyStateImage" />
+                app:layout_constraintEnd_toEndOf="parent" />
 
             <TextView
                 android:id="@+id/emptyStateDescription"
@@ -124,11 +117,11 @@
                 android:layout_marginTop="8dp"
                 android:gravity="center"
                 android:text="@string/no_news"
+                android:textColor="?attr/colorOnPrimary"
                 android:textAppearance="@style/TextAppearance.MaterialComponents.Body2"
-                android:textColor="@color/text_secondary"
-                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/emptyStateTitle"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/emptyStateTitle" />
+                app:layout_constraintEnd_toEndOf="parent" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/retryButton"
@@ -139,14 +132,14 @@
                 android:contentDescription="@string/try_again"
                 android:minHeight="48dp"
                 android:text="@string/try_again"
-                app:backgroundTint="@color/primary"
+                android:backgroundTint="?attr/colorSecondary"
+                android:textColor="?attr/colorOnSecondary"
                 app:cornerRadius="24dp"
-                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/emptyStateDescription"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/emptyStateDescription" />
+                app:layout_constraintEnd_toEndOf="parent" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
-        <!-- Loading Progress -->
         <com.google.android.material.progressindicator.CircularProgressIndicator
             android:id="@+id/progressBar"
             android:layout_width="wrap_content"
@@ -154,25 +147,24 @@
             android:layout_gravity="center"
             android:indeterminate="true"
             android:visibility="gone"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:indicatorColor="@color/primary"
+            app:indicatorColor="?attr/colorSecondary"
             app:indicatorSize="48dp"
-            app:trackColor="@color/primary_light"
             app:trackThickness="4dp"
-            tools:visibility="visible" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent" />
 
-        <!-- Loading More Progress -->
         <ProgressBar
             android:id="@+id/loadingMoreProgress"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"
             android:visibility="gone"
+            android:indeterminateTint="?attr/colorSecondary"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" />
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

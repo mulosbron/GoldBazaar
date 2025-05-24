@@ -13,11 +13,13 @@ retrofit = "2.10.0"
 gson = "2.10.0"
 recyclerview = "1.4.0"
 jwtdecode = "2.0.0"
-navigation = "2.8.9"
+navigation = "2.9.0"
 koin = "3.4.0"
 okhttp = "4.11.0"
 swiperefreshlayout = "1.1.0"
 securitycrypto = "1.1.0-alpha07"
+mpandroidchart = "3.1.0"
+junitKtx = "1.2.1"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
@@ -42,6 +44,8 @@ okhttp = { group = "com.squareup.okhttp3", name = "okhttp", version.ref = "okhtt
 okhttp-logging = { module = "com.squareup.okhttp3:logging-interceptor", version.ref = "okhttp" }
 androidx-swiperefreshlayout = { group = "androidx.swiperefreshlayout", name = "swiperefreshlayout", version.ref = "swiperefreshlayout" }
 androidx-security = { group = "androidx.security", name = "security-crypto", version.ref = "securitycrypto" }
+mpandroidchart = { group = "com.github.PhilJay", name = "MPAndroidChart", version.ref = "mpandroidchart" }
+androidx-junit-ktx = { group = "androidx.test.ext", name = "junit-ktx", version.ref = "junitKtx" }
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }

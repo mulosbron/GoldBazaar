@@ -1,0 +1,8 @@
+<resources>
+    <!-- Tema nitelikleri: böylece ?attr/colorSurface vb. bulunur -->
+    <attr name="colorSurface" format="color|reference"/>
+    <attr name="colorPrimaryVariant" format="color|reference"/>
+    <attr name="colorOnPrimary" format="color|reference"/>
+    <attr name="colorSecondary" format="color|reference"/>
+    <attr name="colorOnSecondary" format="color|reference"/>
+</resources>
